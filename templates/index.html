@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Batted Ball Data Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: rgb(255, 255, 255);
+            background-color: rgb(19, 39, 79);
+        }
+        h1 {
+            text-align: center;
+            color: rgb(234, 170, 0);
+        }
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .plot-container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            margin: 20px 0;
+        }
+        .logo-container img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            width: auto;
+        }
+    </style>
+    <script>
+        function hideLogo() {
+            const logoContainer = document.getElementById('logo-container');
+            if (logoContainer) {
+                logoContainer.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Batted Ball Data Visualization</h1>
+
+    <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="hideLogo()">
+        <input type="file" name="file" accept=".xlsx" required>
+        <label for="rows">Number of rows to display:</label>
+        <input type="number" name="rows" min="1" max="1000" value="100">
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if show_logo %}
+    <div id="logo-container" class="logo-container">
+        <img src="/static/images/Braves_image.png" alt="Braves Logo">
+    </div>
+    {% endif %}
+
+    <div class="plot-container">
+        {% if batter_hits_numbers_plot %}
+            <h2>Batters Hits vs Pitchers</h2>
+            {{ batter_hits_numbers_plot|safe }}
+        {% endif %}
+    </div>
+    
+    <div class="plot-container">
+        {% if launch_plot %}
+            <h2>Launch Angle vs Exit Speed</h2>
+            {{ launch_plot|safe }}
+        {% endif %}
+    </div>
+
+    <div class="plot-container">
+        {% if distance_plot %}
+            <h2>Hit Distance vs Hang Time</h2>
+            {{ distance_plot|safe }}
+        {% endif %}
+    </div>
+    
+    <div class="plot-container">
+        {% if outcome_plot %}
+            <h2>Play Outcome Distribution</h2>
+            {{ outcome_plot|safe }}
+        {% endif %}
+    </div>
+    
+</body>
+</html>
