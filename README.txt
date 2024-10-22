@@ -31,3 +31,6 @@ Instructions to Run the Application(Easy to run on Visual Studio Code):
 Notes:
 - The application is designed to process a maximum of 1000 rows at a time for performance considerations. If you want to increase the number of rows past 1000, then can be done by editing the index.html file.
 - Make sure the Excel file has the required columns, otherwise, an error message will be displayed.
+- Two files are required to run the app. Index.html is located in templates. app.py file should be visible below README.txt file. 
+- It's easy to either clone or download the github repository to veiw the exercise. Then follow the instructions to run.
+
